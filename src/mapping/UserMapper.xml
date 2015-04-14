@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="model.User" >
+    <id column="su_id" property="suId" jdbcType="INTEGER" />
+    <result column="su_phone" property="suPhone" jdbcType="VARCHAR" />
+    <result column="su_nickname" property="suNickname" jdbcType="VARCHAR" />
+    <result column="su_password" property="suPassword" jdbcType="VARCHAR" />
+    <result column="su_icon" property="suIcon" jdbcType="VARCHAR" />
+    <result column="su_sign" property="suSign" jdbcType="VARCHAR" />
+    <result column="su_sex" property="suSex" jdbcType="BIT" />
+    <result column="su_age" property="suAge" jdbcType="TINYINT" />
+    <result column="su_sport" property="suSport" jdbcType="VARCHAR" />
+    <result column="su_industry" property="suIndustry" jdbcType="VARCHAR" />
+    <result column="su_create_time" property="suCreateTime" jdbcType="TIMESTAMP" />
+    <result column="su_state" property="suState" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    su_id, su_phone, su_nickname, su_password, su_icon, su_sign, su_sex, su_age, su_sport, 
+    su_industry, su_create_time, su_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_user
+    where su_id = #{suId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from s_user
+    where su_id = #{suId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="model.User" >
+    insert into s_user (su_id, su_phone, su_nickname, 
+      su_password, su_icon, su_sign, 
+      su_sex, su_age, su_sport, 
+      su_industry, su_create_time, su_state
+      )
+    values (#{suId,jdbcType=INTEGER}, #{suPhone,jdbcType=VARCHAR}, #{suNickname,jdbcType=VARCHAR}, 
+      #{suPassword,jdbcType=VARCHAR}, #{suIcon,jdbcType=VARCHAR}, #{suSign,jdbcType=VARCHAR}, 
+      #{suSex,jdbcType=BIT}, #{suAge,jdbcType=TINYINT}, #{suSport,jdbcType=VARCHAR}, 
+      #{suIndustry,jdbcType=VARCHAR}, #{suCreateTime,jdbcType=TIMESTAMP}, #{suState,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.User" >
+    insert into s_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="suId != null" >
+        su_id,
+      </if>
+      <if test="suPhone != null" >
+        su_phone,
+      </if>
+      <if test="suNickname != null" >
+        su_nickname,
+      </if>
+      <if test="suPassword != null" >
+        su_password,
+      </if>
+      <if test="suIcon != null" >
+        su_icon,
+      </if>
+      <if test="suSign != null" >
+        su_sign,
+      </if>
+      <if test="suSex != null" >
+        su_sex,
+      </if>
+      <if test="suAge != null" >
+        su_age,
+      </if>
+      <if test="suSport != null" >
+        su_sport,
+      </if>
+      <if test="suIndustry != null" >
+        su_industry,
+      </if>
+      <if test="suCreateTime != null" >
+        su_create_time,
+      </if>
+      <if test="suState != null" >
+        su_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="suId != null" >
+        #{suId,jdbcType=INTEGER},
+      </if>
+      <if test="suPhone != null" >
+        #{suPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="suNickname != null" >
+        #{suNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="suPassword != null" >
+        #{suPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="suIcon != null" >
+        #{suIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="suSign != null" >
+        #{suSign,jdbcType=VARCHAR},
+      </if>
+      <if test="suSex != null" >
+        #{suSex,jdbcType=BIT},
+      </if>
+      <if test="suAge != null" >
+        #{suAge,jdbcType=TINYINT},
+      </if>
+      <if test="suSport != null" >
+        #{suSport,jdbcType=VARCHAR},
+      </if>
+      <if test="suIndustry != null" >
+        #{suIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="suCreateTime != null" >
+        #{suCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="suState != null" >
+        #{suState,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="model.User" >
+    update s_user
+    <set >
+      <if test="suPhone != null" >
+        su_phone = #{suPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="suNickname != null" >
+        su_nickname = #{suNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="suPassword != null" >
+        su_password = #{suPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="suIcon != null" >
+        su_icon = #{suIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="suSign != null" >
+        su_sign = #{suSign,jdbcType=VARCHAR},
+      </if>
+      <if test="suSex != null" >
+        su_sex = #{suSex,jdbcType=BIT},
+      </if>
+      <if test="suAge != null" >
+        su_age = #{suAge,jdbcType=TINYINT},
+      </if>
+      <if test="suSport != null" >
+        su_sport = #{suSport,jdbcType=VARCHAR},
+      </if>
+      <if test="suIndustry != null" >
+        su_industry = #{suIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="suCreateTime != null" >
+        su_create_time = #{suCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="suState != null" >
+        su_state = #{suState,jdbcType=BIT},
+      </if>
+    </set>
+    where su_id = #{suId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.User" >
+    update s_user
+    set su_phone = #{suPhone,jdbcType=VARCHAR},
+      su_nickname = #{suNickname,jdbcType=VARCHAR},
+      su_password = #{suPassword,jdbcType=VARCHAR},
+      su_icon = #{suIcon,jdbcType=VARCHAR},
+      su_sign = #{suSign,jdbcType=VARCHAR},
+      su_sex = #{suSex,jdbcType=BIT},
+      su_age = #{suAge,jdbcType=TINYINT},
+      su_sport = #{suSport,jdbcType=VARCHAR},
+      su_industry = #{suIndustry,jdbcType=VARCHAR},
+      su_create_time = #{suCreateTime,jdbcType=TIMESTAMP},
+      su_state = #{suState,jdbcType=BIT}
+    where su_id = #{suId,jdbcType=INTEGER}
+  </update>
+</mapper>
